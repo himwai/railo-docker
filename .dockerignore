@@ -1,0 +1,8 @@
+# 版本控制
+.git
+.gitignore
+
+# Docker 相關文件（除了 Dockerfile）
+docker-compose*
+.dockerignore
+dockerfile

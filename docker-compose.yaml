@@ -1,0 +1,19 @@
+services:
+  gpu-test:
+    build:
+      context: .
+      dockerfile: dockerfile
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+      - TF_FORCE_GPU_ALLOW_GROWTH=true
+      - LD_LIBRARY_PATH=/usr/local/cuda/l ib64:/usr/local/cuda/extras/CUPTI/lib64
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]      
+    # command: tail -f /dev/null              
