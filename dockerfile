@@ -1,15 +1,19 @@
-# 構建階段
-FROM nvidia/cuda:12.6.1-base-ubuntu24.04
+# 使用最新的 PyTorch 鏡像，包含 CUDA 支持
+FROM pytorch/pytorch:latest
 
+# 設置工作目錄
 WORKDIR /app
 
-# 更新並安裝基本工具
-RUN apt-get update && \
-    apt-get install -y curl gnupg && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+# 安裝額外的依賴
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-# 設置 CUDA 環境變量
-ENV LD_LIBRARY_PATH /usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
+# 複製 Python 測試腳本到容器中
+COPY simple.py .
 
-CMD ["nvidia-smi"]
+# 設置環境變量
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
+
+# 運行 Python 腳本
+CMD ["python", "simple.py"]
