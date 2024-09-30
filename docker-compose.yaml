@@ -16,4 +16,4 @@ services:
             - driver: nvidia
               count: all
               capabilities: [gpu]      
-    command: tail -f /dev/null              
+    # command: tail -f /dev/null              
