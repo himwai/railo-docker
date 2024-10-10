@@ -1,5 +1,5 @@
 # 使用最新的 PyTorch 鏡像，包含 CUDA 支持
-FROM pytorch/pytorch:1.9.0-cuda10.2-cudnn7-runtime
+FROM pytorch/pytorch:2.4.1-cuda11.8-cudnn9-runtime
 
 # 設置工作目錄
 WORKDIR /app

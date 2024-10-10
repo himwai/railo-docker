@@ -1,1 +1,5 @@
-matplotlib
+torch 
+torchvision 
+matplotlib 
+thop
+tqdm
