@@ -1,7 +1,6 @@
 # 構建階段
 FROM nvidia/cuda:12.6.1-base-ubuntu24.04
 
-
 WORKDIR /app
 
 # 更新並安裝基本工具
